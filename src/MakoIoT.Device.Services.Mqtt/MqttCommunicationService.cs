@@ -113,7 +113,7 @@ namespace MakoIoT.Device.Services.Mqtt
         private void PublishInternal(string messageString, string topic)
         {
             _logger.LogDebug($"Publishing message to topic: {topic}");
-            _mqttClient.Publish(topic, Encoding.UTF8.GetBytes(messageString), MqttQoSLevel.AtLeastOnce, false);
+            _mqttClient.Publish(topic, Encoding.UTF8.GetBytes(messageString));
         }
     }
 

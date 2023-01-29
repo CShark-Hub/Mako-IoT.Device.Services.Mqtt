@@ -1,5 +1,5 @@
-﻿using MakoIoT.Device.Services.DependencyInjection;
-using MakoIoT.Device.Services.Interface;
+﻿using MakoIoT.Device.Services.Interface;
+using nanoFramework.DependencyInjection;
 
 namespace MakoIoT.Device.Services.Mqtt.Extensions
 {
@@ -7,7 +7,7 @@ namespace MakoIoT.Device.Services.Mqtt.Extensions
     {
         public static IDeviceBuilder AddMqtt(this IDeviceBuilder builder)
         {
-            DI.RegisterSingleton(typeof(ICommunicationService), typeof(MqttCommunicationService));
+            builder.Services.AddSingleton(typeof(ICommunicationService), typeof(MqttCommunicationService));
             return builder;
         }
     }
