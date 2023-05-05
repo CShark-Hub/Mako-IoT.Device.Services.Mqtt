@@ -1,4 +1,5 @@
-# Project readme
+#  Mako-IoT.Device.Services.Mqtt
+ICommunicationService implementation with MQTT using [M2MQTT](https://github.com/nanoframework/nanoFramework.m2mqtt) library.
 
 ## How to manually sync fork
 - Clone repository and navigate into folder
