@@ -11,6 +11,8 @@
         public string ClientId { get; set; }
 
         public string TopicPrefix { get; set; }
+        public int PublishQoS { get; set; }
+        public bool PublishRetain { get; set; }
 
         public static string SectionName => "Mqtt";
     }
