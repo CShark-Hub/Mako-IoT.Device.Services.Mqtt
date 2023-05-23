@@ -3,7 +3,6 @@ using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using MakoIoT.Device.Services.Interface;
 using MakoIoT.Device.Services.Mqtt.Configuration;
-using MakoIoT.Device.Services.Mqtt.Extensions;
 using MakoIoT.Device.Utilities.String.Extensions;
 using Microsoft.Extensions.Logging;
 using nanoFramework.M2Mqtt;
