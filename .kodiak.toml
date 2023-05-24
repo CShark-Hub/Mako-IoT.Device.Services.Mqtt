@@ -5,7 +5,7 @@ version = 1
 update.always = true
 merge.require_automerge_label = false
 merge.method = "squash"
-delete_branch_on_merge = true
+merge.delete_branch_on_merge = true
 
 [approve]
 auto_approve_usernames = ["torbacz"]
