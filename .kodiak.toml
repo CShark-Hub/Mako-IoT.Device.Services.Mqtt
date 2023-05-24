@@ -6,7 +6,7 @@ merge.require_automerge_label = false
 merge.method = "squash"
 
 [approve]
-approve.auto_approve_usernames = ["kodiakhq"]
+auto_approve_usernames = ["kodiakhq"]
 
 [merge.automerge_dependencies]
 # only auto merge "minor" and "patch" and "major" version upgrades.
