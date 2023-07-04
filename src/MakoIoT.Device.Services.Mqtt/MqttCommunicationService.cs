@@ -55,7 +55,9 @@ namespace MakoIoT.Device.Services.Mqtt
             {
                 _networkProvider.Connect();
                 if (!_networkProvider.IsConnected)
-                    throw new NotConnectedException("Could not connect to network");
+                {
+                    throw new Exception("Could not connect to network");
+                }
             }
 
             if (_mqttClient == null)
@@ -68,7 +70,9 @@ namespace MakoIoT.Device.Services.Mqtt
             {
                 var mqttConnectResult = _mqttClient.Connect(_config.ClientId, _config.Username, _config.Password);
                 if (!_mqttClient.IsConnected)
-                    throw new NotConnectedException($"Could not connect to MQTT. Broker returned {mqttConnectResult}");
+                {
+                    throw new Exception($"Could not connect to MQTT. Broker returned {mqttConnectResult}");
+                }
 
                 var topics = GetSubscriptionTopics(subscriptions);
                 var qosLevels = new MqttQoSLevel[topics.Length];
@@ -114,14 +118,6 @@ namespace MakoIoT.Device.Services.Mqtt
             _logger.LogDebug($"Publishing message to topic: {topic}");
             _mqttClient.Publish(topic, Encoding.UTF8.GetBytes(messageString), null, null, 
                 (MqttQoSLevel)_config.PublishQoS, _config.PublishRetain);
-        }
-    }
-
-    public class NotConnectedException : Exception
-    {
-        public NotConnectedException(string message) : base(message)
-        {
-            
         }
     }
 }
