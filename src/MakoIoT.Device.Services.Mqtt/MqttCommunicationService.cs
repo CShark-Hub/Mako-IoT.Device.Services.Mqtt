@@ -3,6 +3,7 @@ using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using MakoIoT.Device.Services.Interface;
 using MakoIoT.Device.Services.Mqtt.Configuration;
+using MakoIoT.Device.Services.Mqtt.Exceptions;
 using MakoIoT.Device.Utilities.String.Extensions;
 using Microsoft.Extensions.Logging;
 using nanoFramework.M2Mqtt;
@@ -56,7 +57,7 @@ namespace MakoIoT.Device.Services.Mqtt
                 _networkProvider.Connect();
                 if (!_networkProvider.IsConnected)
                 {
-                    throw new Exception("Could not connect to network");
+                    throw new NotConnectedException("Could not connect to network");
                 }
             }
 
@@ -71,7 +72,7 @@ namespace MakoIoT.Device.Services.Mqtt
                 var mqttConnectResult = _mqttClient.Connect(_config.ClientId, _config.Username, _config.Password);
                 if (!_mqttClient.IsConnected)
                 {
-                    throw new Exception($"Could not connect to MQTT. Broker returned {mqttConnectResult}");
+                    throw new NotConnectedException($"Could not connect to MQTT. Broker returned {mqttConnectResult}");
                 }
 
                 var topics = GetSubscriptionTopics(subscriptions);

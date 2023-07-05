@@ -20,6 +20,7 @@
   <Import Project="$(NanoFrameworkProjectSystemPath)NFProjectSystem.props" Condition="Exists('$(NanoFrameworkProjectSystemPath)NFProjectSystem.props')" />
   <ItemGroup>
     <Compile Include="Configuration\MqttConfig.cs" />
+    <Compile Include="Exceptions\NotConnectedException.cs" />
     <Compile Include="Extensions\DeviceBuilderExtension.cs" />
     <Compile Include="MqttCommunicationService.cs" />
   </ItemGroup>
