@@ -17,7 +17,7 @@
     <description>MQTT library for message bus of MAKO-IoT</description>
     <tags>nanoFramework C# csharp netmf netnf mako-iot mqtt message bus</tags>
     <dependencies>
-      <dependency id="MakoIoT.Device.Services.Interface" version="1.0.42.48151" />
+      <dependency id="MakoIoT.Device.Services.Interface" version="1.0.43.29288" />
       <dependency id="MakoIoT.Device.Utilities.String" version="1.0.33.52014" />
       <dependency id="nanoFramework.CoreLibrary" version="1.15.5" />
       <dependency id="nanoFramework.Logging" version="1.1.76" />
