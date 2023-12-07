@@ -5,7 +5,6 @@ using MakoIoT.Device.Services.Interface;
 using MakoIoT.Device.Services.Mqtt.Configuration;
 using MakoIoT.Device.Services.Mqtt.Exceptions;
 using MakoIoT.Device.Utilities.String.Extensions;
-using Microsoft.Extensions.Logging;
 using nanoFramework.M2Mqtt;
 using nanoFramework.M2Mqtt.Messages;
 
@@ -17,12 +16,12 @@ namespace MakoIoT.Device.Services.Mqtt
         private const string broadcastTopicPrefix = "broadcast";
 
         private readonly INetworkProvider _networkProvider;
-        private readonly ILogger _logger;
+        private readonly ILog _logger;
         private MqttClient _mqttClient;
         private readonly MqttConfig _config;
         private readonly X509Certificate _caCert;
 
-        public MqttCommunicationService(INetworkProvider networkProvider, IConfigurationService configService, ILogger logger)
+        public MqttCommunicationService(INetworkProvider networkProvider, IConfigurationService configService, ILog logger)
         {
             _networkProvider = networkProvider;
             _logger = logger;
@@ -80,7 +79,7 @@ namespace MakoIoT.Device.Services.Mqtt
                 for (int i = 0; i < qosLevels.Length; i++)
                 {
                     qosLevels[i] = MqttQoSLevel.AtLeastOnce;
-                    _logger.LogDebug($"Subscribing to topic: {topics[i]}");
+                    _logger.Trace($"Subscribing to topic: {topics[i]}");
                 }
 
                 _mqttClient.Subscribe(topics, qosLevels);
@@ -96,9 +95,9 @@ namespace MakoIoT.Device.Services.Mqtt
 
         private void OnMessageReceived(object sender, MqttMsgPublishEventArgs e)
         {
-            _logger.LogDebug($"Received message from topic: {e.Topic}");
+            _logger.Trace($"Received message from topic: {e.Topic}");
             var message = Encoding.UTF8.GetString(e.Message, 0, e.Message.Length);
-            _logger.LogTrace(message.EscapeForInterpolation());
+            _logger.Trace(message.EscapeForInterpolation());
             MessageReceived?.Invoke(this, new ObjectEventArgs(message));
         }
 
@@ -116,7 +115,7 @@ namespace MakoIoT.Device.Services.Mqtt
 
         private void PublishInternal(string messageString, string topic)
         {
-            _logger.LogDebug($"Publishing message to topic: {topic}");
+            _logger.Trace($"Publishing message to topic: {topic}");
             _mqttClient.Publish(topic, Encoding.UTF8.GetBytes(messageString), null, null, 
                 (MqttQoSLevel)_config.PublishQoS, _config.PublishRetain);
         }
